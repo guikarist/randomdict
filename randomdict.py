@@ -1,7 +1,7 @@
-from collections import MutableMapping
+from collections.abc import MutableMapping
 import random
 
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 
 
 class RandomDict(MutableMapping):
@@ -21,15 +21,15 @@ class RandomDict(MutableMapping):
     def __setitem__(self, key, val):
         if key in self.keys:
             i = self.keys[key]
+            self.values[i] = (key, val)
         else:
             self.last_index += 1
             i = self.last_index
-
-        self.values.append((key, val))
-        self.keys[key] = i
+            self.values.append((key, val))
+            self.keys[key] = i
 
     def __delitem__(self, key):
-        if not key in self.keys:
+        if key not in self.keys:
             raise KeyError
 
         # index of item to delete is i
@@ -50,7 +50,7 @@ class RandomDict(MutableMapping):
         del self.keys[key]
 
     def __getitem__(self, key):
-        if not key in self.keys:
+        if key not in self.keys:
             raise KeyError
 
         i = self.keys[key]
