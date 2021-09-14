@@ -3,6 +3,7 @@ import random
 
 __version__ = '0.2.0'
 
+
 class RandomDict(MutableMapping):
     def __init__(self, *args, **kwargs):
         """ Create RandomDict object with contents specified by arguments.
@@ -26,7 +27,7 @@ class RandomDict(MutableMapping):
 
         self.values.append((key, val))
         self.keys[key] = i
-    
+
     def __delitem__(self, key):
         if not key in self.keys:
             raise KeyError
@@ -47,7 +48,7 @@ class RandomDict(MutableMapping):
         self.last_index -= 1
         # remove deleted key
         del self.keys[key]
-    
+
     def __getitem__(self, key):
         if not key in self.keys:
             raise KeyError
@@ -65,7 +66,7 @@ class RandomDict(MutableMapping):
         """ Return a random key from this dictionary in O(1) time """
         if len(self) == 0:
             raise KeyError("RandomDict is empty")
-        
+
         i = random.randint(0, self.last_index)
         return self.values[i][0]
 

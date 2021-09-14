@@ -15,4 +15,4 @@ setup(name='randomdict',
       """,
       py_modules=['randomdict'],
       setup_requires=['nose>=1.0'],
-)
+      )
